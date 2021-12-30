@@ -1,4 +1,4 @@
-from baseline import Random_baseline
+from baseline import Random_baseline, Frequency_baseline
 from util import read_data, words_to_index
 from evaluate_system import evaluate
 import os
@@ -13,11 +13,11 @@ train_sentences, train_words = words_to_index(train_sentences, train_words)
 test_sentences, test_words, test_label = read_data(test_data_file)
 test_sentences, test_words = words_to_index(test_sentences, test_words)
 
-model = Random_baseline()
+model = Frequency_baseline()
 
 model.fit(train_sentences, train_words, train_label)
-prediction = model.predict(test_sentences, test_words)
-model.save(test_sentences, test_words, output_file)
+#prediction = model.predict(test_sentences, test_words, threshold=0.01)
+model.save(test_sentences, test_words, output_file, threshold=10**-4)
 
 evaluate(test_data_file, output_file)
 
