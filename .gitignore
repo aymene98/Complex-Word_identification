@@ -3,10 +3,12 @@ descriptions
 final-results
 ressources
 validation
+evaluation
 
 # extention of data files
 *.zip
 *.pdf
+.DS_Store
 
 
 # Byte-compiled / optimized / DLL files
