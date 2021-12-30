@@ -8,7 +8,7 @@ evaluation
 # extention of data files
 *.zip
 *.pdf
-.DS_Store
+*.DS_Store
 
 
 # Byte-compiled / optimized / DLL files
