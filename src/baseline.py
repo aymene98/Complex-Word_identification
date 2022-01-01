@@ -9,6 +9,7 @@ class Random_baseline(object):
         pass
     
     def predict(self, sentences, words):
+        print(type(np.random.randint(2, size=len(words), dtype=int)))
         return np.random.randint(2, size=len(words), dtype=int)
     
     def save(self, sentences, words, name):
@@ -37,5 +38,27 @@ class Frequency_baseline(object):
     
     def save(self, sentences, words, name, threshold=0.1):
         np.savetxt(name, self.predict(sentences, words), delimiter='\n', fmt='%1.0d')
-        
-        
+
+     
+class All_complex(object):
+
+    def fit(self, sentences, words, label_vectors):
+        pass
+
+    def predict(self, sentences, words):
+        return np.ones(len(words), dtype=int)
+
+    def save(self, sentences, words, name):
+        np.savetxt(name, self.predict(sentences, words), delimiter='\n', fmt='%1.0d')
+
+
+class All_simple(object):
+
+    def fit(self, sentences, words, label_vectors):
+        pass
+
+    def predict(self, sentences, words):
+        return np.zeros(len(words), dtype=int)
+
+    def save(self, sentences, words, name):
+        np.savetxt(name, self.predict(sentences, words), delimiter='\n', fmt='%1.0d')
