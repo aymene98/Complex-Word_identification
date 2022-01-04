@@ -32,17 +32,17 @@ class Frequency_baseline(object):
         self.words_dict = {word: temp_dict.freq(word) for word in temp_dict}
 
     
-    def predict(self, sentences, words, threshold=0.1):
+    def predict(self, sentences, words, threshold=10**-4):
         predictions = np.zeros(len(words))
         sentences, words = words_to_index(sentences, words)
         for i, word in enumerate(words):
             if word not in self.words_dict.keys():
-                predictions[i] = random.randint(0, 1)
+                predictions[i] = 1#random.randint(0, 1)
             elif self.words_dict[word] < threshold:
                 predictions[i] = 1
         return predictions
     
-    def save(self, sentences, words, name, threshold=0.1):
+    def save(self, sentences, words, name, threshold=10**-4):
         np.savetxt(name, self.predict(sentences, words, threshold), delimiter='\n', fmt='%1.0d')
 
      
@@ -74,7 +74,7 @@ class Simple_wikipedia(object):
     
     def fit(self, sentences, words, label_vectors):
         #wget https://github.com/LGDoor/Dump-of-Simple-English-Wiki/raw/master/corpus.tgz
-        with open('../data/freq_corpora/simple_wikipedia.txt', encoding="utf-8") as fp:
+        with open('./data/freq_corpora/simple_wikipedia.txt', encoding="utf-8") as fp:
             text = fp.read()
             toknizer = RegexpTokenizer(r'''\w'|\w+|[^\w\s]''')
             words = toknizer.tokenize(text)
@@ -93,5 +93,5 @@ class Simple_wikipedia(object):
                 predictions[i] = 1
         return predictions
     
-    def save(self, sentences, words, name, threshold):
+    def save(self, sentences, words, name, threshold=500):
         np.savetxt(name, self.predict(sentences, words, threshold), delimiter='\n', fmt='%1.0d')

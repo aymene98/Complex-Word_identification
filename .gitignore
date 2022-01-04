@@ -4,6 +4,7 @@ final-results
 ressources
 validation
 evaluation
+freq_corpora
 
 # extention of data files
 *.zip
